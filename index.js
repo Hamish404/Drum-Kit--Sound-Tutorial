@@ -3,11 +3,13 @@ const allButtons = document.querySelectorAll('.drum');
 allButtons.forEach(button => {
   button.addEventListener('click', (e) => {
     makeSound(e.target.innerHTML);
+    buttonAnimation(e.target.innerHTML);
   })
 })
 
 document.addEventListener('keydown', (e) => {
   makeSound(e.key);
+  buttonAnimation(e.key);
 })
 
 const makeSound = (key) => {
@@ -50,3 +52,10 @@ const makeSound = (key) => {
   }
 }
 
+const buttonAnimation = (key) => {
+ const activeButton = document.querySelector('.' + key);
+ activeButton.classList.add('pressed');
+ setTimeout(() => {
+  activeButton.classList.remove('pressed');
+ }, 100);
+}
